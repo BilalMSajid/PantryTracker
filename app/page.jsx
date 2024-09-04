@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { firestore } from "@/firebase_config";
 import { query, collection, getDocs, doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
-import { Box, Typography, Button, TextField, Modal, Stack, IconButton } from "@mui/material";
+import { Box, Typography, Button, TextField, Modal, Stack, IconButton, Paper } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 
+// Styling for the Modal
 const style = {
   position: 'absolute',
   top: '50%',
@@ -21,6 +22,7 @@ const style = {
   gap: 2,
 };
 
+// Main component
 const Home = () => {
   const [inventory, setInventory] = useState([]);
   const [open, setOpen] = useState(false);
@@ -83,7 +85,10 @@ const Home = () => {
       alignItems="center"
       flexDirection="column"
       gap={2}
-      sx={{ backgroundColor: '#f5f5f5', padding: 2 }}
+      sx={{
+        background: 'linear-gradient(135deg, #e0f7fa, #a7ffeb)',
+        padding: 4,
+      }}
     >
       <Modal
         open={open}
@@ -117,7 +122,17 @@ const Home = () => {
           </Stack>
         </Box>
       </Modal>
-      <Button variant="contained" color="primary" onClick={handleOpen}>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={handleOpen}
+        sx={{
+          backgroundColor: '#00796b',
+          '&:hover': {
+            backgroundColor: '#004d40',
+          }
+        }}
+      >
         Add New Item
       </Button>
       <TextField
@@ -126,19 +141,32 @@ const Home = () => {
         fullWidth
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        sx={{ marginBottom: 2, width: '800px' }}
+        sx={{
+          marginBottom: 2,
+          width: { xs: '90%', md: '800px' },
+          backgroundColor: '#ffffff',
+          borderRadius: 2,
+        }}
       />
-      <Box
-        width="800px"
-        p={2}
-        sx={{ backgroundColor: '#fff', borderRadius: 2, boxShadow: 1, overflow: 'auto' }}
+      <Paper
+        elevation={3}
+        sx={{
+          width: { xs: '90%', md: '800px' },
+          padding: 2,
+          backgroundColor: '#e0f2f1',
+          borderRadius: 2,
+        }}
       >
         <Box
           width="100%"
           py={2}
-          sx={{ backgroundColor: '#1976d2', borderRadius: 1, mb: 2 }}
+          sx={{
+            backgroundColor: '#00796b',
+            borderRadius: 1,
+            mb: 2,
+          }}
         >
-          <Typography variant="h4" color="#fff" textAlign="center">
+          <Typography variant="h4" color="#ffffff" textAlign="center">
             Inventory Items
           </Typography>
         </Box>
@@ -150,7 +178,10 @@ const Home = () => {
               display="flex"
               justifyContent="space-between"
               alignItems="center"
-              sx={{ backgroundColor: '#f0f0f0', borderRadius: 1 }}
+              sx={{
+                backgroundColor: '#b2dfdb',
+                borderRadius: 1,
+              }}
             >
               <Typography variant="h6">
                 {name.charAt(0).toUpperCase() + name.slice(1)}
@@ -169,7 +200,7 @@ const Home = () => {
             </Box>
           ))}
         </Stack>
-      </Box>
+      </Paper>
     </Box>
   );
 };
