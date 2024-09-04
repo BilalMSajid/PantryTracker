@@ -86,10 +86,26 @@ const Home = () => {
       flexDirection="column"
       gap={2}
       sx={{
-        background: 'linear-gradient(135deg, #e0f7fa, #a7ffeb)',
+        background: 'linear-gradient(135deg, rgba(224,247,250,0.8), rgba(167,255,235,0.8)), url("/path/to/your/pantry-image.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         padding: 4,
       }}
     >
+      {/* Application Title */}
+      <Typography
+        variant="h3"
+        component="h1"
+        sx={{
+          fontWeight: 'bold',
+          color: '#004d40',
+          mb: 4,
+          textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)',
+        }}
+      >
+        Your Palentory
+      </Typography>
+
       <Modal
         open={open}
         onClose={handleClose}
